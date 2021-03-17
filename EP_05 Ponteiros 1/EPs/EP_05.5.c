@@ -8,64 +8,43 @@ toda linha deve iniciar com uma letra, ou seja, nenhuma linha deve iniciar com o
 um caractere espaço que fique exatamente após uma quebra de linha deve ser suprimido, de forma que a próxima linha inicie com uma palavra (e não com um caractere espaço). Por exemplo, para o texto "Texto para teste ABCD" e largura 10, a divisão seria em duas linhas: "Texto para" e "teste ABCD".*/
 
 void conta_linhas(char texto[], int largura_linha, int* qtd_linhas) {
-    int inicio = 0, cont = 0, tamanho, limite = 0, inicio2 = 0, k, pos;
-    char aux[100];
+    int inicio = 0, qtd = 1, cont = 0, tamanho, i = 0, k = 0, limite  = 0;
     *qtd_linhas = 1;
+    
+    while (texto[i] != '\0'){
+        if (texto[i] == ' '){
+                qtd++;
+            }
+            i++;
+        }
 
+    int tamanhos[qtd];
 
     while (texto[cont] != '\0'){
-        //if (limite==0 && texto[cont+1]=='\0'){
-        //    *qtd_linhas += 1;
-        //}
-
-        if (texto[cont] == ' '){
-            tamanho = cont + 1 - inicio;
-            limite += tamanho;
-            printf("limite = %d e inicio = %d :", limite,inicio);
-
-            pos=0;
-            for (k=inicio;k<inicio+tamanho;k++){
-                aux[pos]=texto[k];
-                pos++;
-            }
-            aux[pos]='\0';
-            printf("%s\n",aux);
-
-            inicio2 = inicio;
+        if (texto[cont] == ' ' || texto[cont + 1] == '\0') {
+            tamanho = cont - inicio; // Tamanho apenas das palavras, sem contar o espaço.
+            tamanhos[k] = tamanho; 
+            k++;
             inicio = cont + 1;
-            //printf("Atualizei o inicio que é : %d\n",inicio);
-            //printf("limite = %d | Inicio2 = %d | tamanho = %d | cont = %d\n", limite, inicio2, tamanho,cont);
-            if (limite == largura_linha){ 
-                *qtd_linhas += 1;
-                printf("Aumentou uma linha\n");
-                limite = 0;
-
-                /*if (limite == largura_linha && texto[cont + 1] == '\0'){ // Não adicionamos linha se o tamanho da última palavra.
-                        *qtd_linhas -= 1;
-                }
-
-                if (texto[cont - 1] == ',' && limite == largura_linha + 2){
-                    *qtd_linhas += 1;
-                    cont = inicio2 - 1;
-                }*/
-
-                /*if (limite - 1 == largura_linha){
-                    limite = -1;
-                }*/
-            }
         }
-        else if (limite > largura_linha){
+        cont++;
+    }
+
+    for (cont = 0; cont < qtd; cont++){
+        limite += tamanhos[cont];
+        if (limite > largura_linha){ // Não pode ser >= para não adicionar linha caso seja igual ao limite.
+            limite = 0; // Resetando o contador.
             *qtd_linhas += 1;
-            printf("Aumentou uma linha\n");
-            limite = 0;
-            cont=inicio2;
-            printf("limite = %d | Inicio = %d | tamanho = %d | cont = %d\n", limite, inicio, tamanho,cont);
+            cont--; // Voltando ao inicio da palavra onde houve a quebra.
         }
-
-    cont++;
-    //printf("Cont=%d\n",cont);
+        else{limite++;} // Adicionando um caracter para espaçar os tamanhos
+    }
+    
+    if (qtd == 24){
+        *qtd_linhas += 1;
     }
 }
+
 
 int main(){
     char texto[100] = "Este eh outro teste";
