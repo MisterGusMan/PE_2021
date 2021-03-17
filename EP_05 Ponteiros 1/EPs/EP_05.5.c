@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Algumas regras importantes para o cálculo da quantidade de linhas:
+/*Escreva uma função que recebe um texto e uma largura de linha. A função deve calcular a quantidade de linhas necessárias para imprimir o texto passada para a função. 
+O retorno da quantidade de linhas será por referência, no parâmetro qtd_linhas.
+
+Algumas regras importantes para o cálculo da quantidade de linhas:
 
 as palavras não podem ser separadas. Portanto, se não tiver espaço disponível para incluir uma palavra em uma linha, ela deverá ser incluída na próxima. Por exemplo, para o texto "texto teste" e largura de linha 8, a divisão seria em duas linhas "texto" e "teste" (não há espaço na primeira linha para incluir "texto teste". Se a largura de linha for 11, apenas uma linha é suficiente.
 toda linha deve iniciar com uma letra, ou seja, nenhuma linha deve iniciar com o caractere espaço ou com pontuação (ponto, vírgula, etc). Se algum sinal de pontuação ficar exatamente após uma quebra de linha, a palavra que precede o sinal deve ser passada para a próxima linha, de forma que nenhuma linha inicie com pontuação. Por exemplo, para o texto "Neste teste, a texto possui pontuacao." e largura de linha 11, a divisão seria em cinco linhas: "Neste", "teste, a", "texto", "possui", "pontuacao."
