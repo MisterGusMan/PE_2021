@@ -1,0 +1,17 @@
+Ordenação é o processo de rearranjar uma sequência de elementos em ordem ascendente ou descendente, de acordo com a chave 
+de cada elemento; Um dos principais objetivos de realizar a ordenação é facilitar a recuperação dos elementos por sua chave.
+
+Há dois tipos de ordenação:
+Interna: todas as chaves estão na memória principal;
+Externa: grande parte das chaves estão em memória externa.
+
+Os algoritmos de ordenação podem ser divididos entre os baseados em comparação:
+Bubblesort; Selectionsort; Insertionsort; Merge sort; Quicksort; Heapsort.
+E os baseados em distribuição: Countsort; Radixsort; Bucketsort.
+
+Os algoritmos de ordenação podem ser classificados como estável ou não estável;
+•Um algoritmo de ordenação é estável se a ordem relativa de elementos com chaves iguais é mantida após a ordenação
+
+Faremos a ordenação de elementos em vetores/arraysnesta aula, mas podemos aplicar os algoritmos 
+de ordenação para outras estruturas (e.g. listas ligadas).
+
